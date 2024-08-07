@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>manegang collective</title>
+    <style>
+        @font-face {
+            font-family: 'CustomFont';
+            src: url('assets/font1.otf') format('opentype');
+        }
+        
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'CustomFont', sans-serif;
+            background-color: #0a0a0a;
+            background-image: url('assets/bg.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+            color: #cccccc;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            user-select: none;
+        }
+        .container {
+            max-width: 1200px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.22);
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(6.9px);
+            -webkit-backdrop-filter: blur(6.9px);
+            border: 1px solid rgba(0, 0, 0, 0.14);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.1s ease-out;
+            will-change: transform;
+        }
+        header {
+            text-align: center;
+            padding: 10px 0;
+        }
+        .logo {
+            max-width: 50%;
+            height: auto;
+            margin-top: -80px;
+            margin-bottom: -120px;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            margin: 15px 0;
+        }
+        .nav-links a {
+            color: #ffffff;
+            text-transform: lowercase;
+            font-size: 14px;
+            letter-spacing: 1px;
+            margin: 0 15px;
+            transition: color 0.3s;
+            text-decoration: none;
+            filter: antialiased;
+        }
+        .nav-links a:hover {
+            color: #cccccc;
+            filter: blur(1px);
+        }
+        .content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .album-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+            width: 100%;
+        }
+        .album-cover {
+            position: relative;
+            width: 100%;
+            height: 100px;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: filter 0.3s ease;
+        }
+        .album-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: filter 0.3s ease;
+        }
+        .album-title {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #ffffff;
+            font-size: 18px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .album-cover:hover img {
+            filter: blur(3px);
+        }
+        .album-cover:hover .album-title {
+            opacity: 1;
+        }
+        .discord-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #7289da;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+        .discord-button:hover {
+            background-color: #5b6eae;
+        }
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            font-size: 12px;
+            color: #e0e0e0;
+        }
+        footer a {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+        footer a:hover {
+            color: #cccccc;
+        }
+        h2 {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="assets/logo.png" alt="manegang collective logo" class="logo">
+        </header>
+        
+        <div class="nav-links">
+            <a href="?page=home">home</a>
+            <a href="?page=releases">releases</a>
+            <a href="?page=contacts">contacts</a>
+        </div>
+
+        <div class="content">
+            <h2>volumes</h2>
+            <div class="album-grid">
+                <div class="album-cover">
+                    <img src="assets/volume1.jpg" alt="volume 1">
+                    <div class="album-title">volume 1</div>
+                </div>
+                <div class="album-cover">
+                    <img src="assets/volume2.jpg" alt="volume 2">
+                    <div class="album-title">volume 2</div>
+                </div>
+                <div class="album-cover">
+                    <img src="assets/volume3.jpg" alt="volume 3">
+                    <div class="album-title">volume 3</div>
+                </div>
+                <div class="album-cover">
+                    <img src="assets/volume4.jpg" alt="volume 4">
+                    <div class="album-title">volume 4</div>
+                </div>
+                <div class="album-cover">
+                    <img src="assets/volume5.jpg" alt="volume 5">
+                    <div class="album-title">volume 5</div>
+                </div>
+                <div class="album-cover">
+                    <img src="assets/volume6.jpg" alt="volume 6">
+                    <div class="album-title">volume 6</div>
+                </div>
+                <div class="album-cover">
+                    <img src="assets/volume7.jpg" alt="volume 7">
+                    <div class="album-title">volume 7</div>
+                </div>
+                <div class="album-cover" style="background-color: black;">
+                    <img src="assets/volume8.png" alt="volume 8" style="filter: blur(5px);">
+                    <div class="album-title">soon</div>
+                </div>
+            </div>
+
+            <br>
+            <a href="?page=shop&product=exile-volume7" style="color: #ffffff; text-decoration: underline;">stream here</a>
+            <br>
+            <a href="https://discord.gg/p8ujaWQTFy" class="discord-button" target="_blank">join our discord</a>
+        </div>
+        
+        <footer>
+            &copy; 2024 manegang collective & meevin records
+        </footer>
+    </div>
+
+    <script>
+        let posX = 0;
+        let posY = 0;
+        const smoothFactor = 0.2;
+
+        document.addEventListener('mousemove', function (e) {
+            const container = document.querySelector('.container');
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+
+            const centerX = 0.5;
+            const centerY = 0.5;
+
+            const distanceX = x - centerX;
+            const distanceY = y - centerY;
+
+            const sensitivity = 16;
+            const targetX = distanceX * sensitivity; 
+            const targetY = distanceY * sensitivity; 
+
+            posX += (targetX - posX) * smoothFactor;
+            posY += (targetY - posY) * smoothFactor;
+
+            container.style.transform = `translate(${posX}px, ${posY}px)`;
+        });
+    </script>
+</body>
+</html>
