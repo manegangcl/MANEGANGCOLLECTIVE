@@ -28,8 +28,8 @@
             user-select: none;
         }
         .container {
-            max-width: 1200px; /* Maintain max width for larger screens */
-            width: 90%; /* Keep container responsive */
+            max-width: 1200px; 
+            width: 90%; 
             padding: 20px;
             background: rgba(0, 0, 0, 0.22);
             border-radius: 16px;
@@ -48,7 +48,7 @@
             padding: 10px 0;
         }
         .logo {
-            max-width: 50%; /* Maintain logo size on desktop */
+            max-width: 50%; 
             height: auto;
             margin-top: -80px;
             margin-bottom: -140px;
@@ -88,8 +88,8 @@
         .album-cover {
             position: relative;
             width: 100%;
-            height: 130px; /* Increased height for better visuals */
-            border-radius: 8px;
+            height: 130px; 
+            border-radius: 12px;
             overflow: hidden;
             transition: filter 0.3s ease;
         }
@@ -105,30 +105,31 @@
             left: 50%;
             transform: translate(-50%, -50%);
             color: #ffffff;
-            font-size: 18px; /* Set title size */
+            font-size: 18px; 
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
             opacity: 0;
             transition: opacity 0.3s ease;
         }
         .album-cover:hover img {
-            filter: blur(3px);
+            filter: blur(2px);
         }
         .album-cover:hover .album-title {
             opacity: 1;
         }
         .discord-button {
             display: inline-block;
+            background-image: linear-gradient(to right, #6a76f0 0%, #505ce0  51%, rgb(87, 99, 231)  100%);
             padding: 10px 20px;
-            background-color: #7289da;
+            background-color: #5865F2;
             color: #ffffff;
             text-decoration: none;
-            border-radius: 5px;
+            border-radius: 8px;
             font-weight: bold;
             margin-top: 20px;
             transition: background-color 0.3s;
         }
         .discord-button:hover {
-            background-color: #5b6eae;
+            background-color: #4b56ce;
         }
         footer {
             text-align: center;
@@ -146,51 +147,51 @@
         h2 {
             margin-top: -5px;
             margin-bottom: 0px;
-            font-size: 24px; /* Set size for titles */
+            font-size: 24px; 
         }
 
-        /* Mobile styles */
+        
         @media (max-width: 768px) {
             .album-grid {
-                grid-template-columns: repeat(2, 1fr); /* Two columns on small screens */
+                grid-template-columns: repeat(2, 1fr); 
             }
             .logo {
-                max-width: 80%; /* Adjust logo size for mobile */
+                max-width: 80%; 
             }
             .nav-links a {
-                font-size: 12px; /* Smaller text for links */
-                margin: 0 10px; /* Adjust spacing */
+                font-size: 12px; 
+                margin: 0 10px; 
             }
             .album-title {
-                font-size: 16px; /* Adjust album title size */
+                font-size: 16px; 
             }
             h2 {
-                font-size: 20px; /* Adjust heading size */
+                font-size: 20px; 
             }
         }
         @media (max-width: 480px) {
             .album-grid {
-                grid-template-columns: 1fr; /* Single column on extra small screens */
+                grid-template-columns: 1fr; 
             }
             .logo {
-                max-width: 90%; /* Adjust logo size further for smaller screens */
+                max-width: 90%; 
             }
             .nav-links {
-                flex-direction: column; /* Stack links vertically */
+                flex-direction: column; 
                 margin: 10px 0;
             }
             .nav-links a {
-                margin: 5px 0; /* Adjust spacing for vertical links */
+                margin: 5px 0; 
             }
             .album-title {
-                font-size: 14px; /* Smaller album title size */
+                font-size: 14px; 
             }
             h2 {
-                font-size: 18px; /* Smaller heading size */
+                font-size: 18px; 
             }
             .discord-button {
-                padding: 8px 16px; /* Smaller button size */
-                font-size: 14px; /* Adjust font size */
+                padding: 8px 16px; 
+                font-size: 14px; 
             }
         }
     </style>
