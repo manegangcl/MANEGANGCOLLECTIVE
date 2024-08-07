@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>manegang collective - releases</title>
+    <link rel="icon" href="assets/favicon.png" type="image/x-icon">
+    <style>
+        @font-face {
+            font-family: 'CustomFont';
+            src: url('assets/font1.otf') format('opentype');
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'CustomFont', sans-serif;
+            background-color: #0a0a0a;
+            background-image: url('assets/bg.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+            color: #cccccc;
+            height: 100%;
+            overflow: auto;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            scrollbar-width: none; /* firefox */
+        }
+
+        body::-webkit-scrollbar {
+            display: none; /* chrome safari edge */
+        }
+        .container {
+            max-width: 1200px; 
+            width: 90%; 
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.22);
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(6.9px);
+            -webkit-backdrop-filter: blur(6.9px);
+            border: 1px solid rgba(0, 0, 0, 0.14);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.1s ease-out;
+            will-change: transform;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 10px 0;
+        }
+        .logo {
+            max-width: 50%; 
+            height: auto;
+            margin-top: -80px;
+            margin-bottom: -140px;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            margin: 15px 0;
+        }
+        .nav-links a {
+            color: #ffffff;
+            text-transform: lowercase;
+            font-size: 14px;
+            letter-spacing: 1px;
+            margin: 0 15px;
+            transition: color 0.3s;
+            text-decoration: none;
+            filter: antialiased;
+        }
+        .nav-links a:hover {
+            color: #cccccc;
+            filter: blur(1px);
+        }
+        .content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .album-details {
+            width: 100%;
+            max-width: 800px;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+        }
+        .album-details img {
+            width: 255px;
+            height: 255px;
+            border-radius: 12px;
+            margin-right: 20px;
+        }
+        .album-info {
+            background: rgba(0, 0, 0, 0.267);
+            padding-left: 20px;
+            padding-right: 20px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            border-radius: 8px;
+            flex-grow: 1;
+        }
+        .album-info h3 {
+            margin: 10px 0;
+            font-size: 20px;
+        }
+        .album-info p {
+            margin: 5px 0;
+        }
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            font-size: 12px;
+            color: #e0e0e0;
+        }
+        footer a {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+        footer a:hover {
+            color: #cccccc;
+        }
+        h2 {
+            margin-top: -5px;
+            margin-bottom: 0px;
+            font-size: 24px; 
+        }
+        
+        @media (max-width: 768px) {
+            .logo {
+                max-width: 80%; 
+            }
+            .nav-links a {
+                font-size: 12px; 
+                margin: 0 10px; 
+            }
+            .album-info h3 {
+                font-size: 18px; 
+            }
+            .album-info {
+                padding: 8px;
+            }
+            h2 {
+                font-size: 20px; 
+            }
+        }
+        @media (max-width: 480px) {
+            .logo {
+                max-width: 90%; 
+            }
+            .nav-links {
+                flex-direction: column; 
+                margin: 10px 0;
+            }
+            .nav-links a {
+                margin: 5px 0; 
+            }
+            .album-details {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .album-details img {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+            .album-info h3 {
+                font-size: 16px; 
+            }
+            .album-info {
+                padding: 6px;
+            }
+            h2 {
+                font-size: 18px; 
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="assets/logo.png" alt="manegang collective logo" class="logo">
+        </header>
+        
+        <div class="nav-links">
+            <a href="index.html">home</a>
+            <a href="releases.html">releases</a>
+            <a href="contacts.html">contacts</a>
+        </div>
+
+        <div class="content">
+            <h2>releases</h2>
+            <div class="album-details">
+                <img src="assets/volume1.jpg" alt="volume 1">
+                <div class="album-info">
+                    <h3>volume 1</h3>
+                    <p>release date: april 24 2023</p>
+                    <p>track list:</p>
+                    <ul>
+                        <li>placeholdertrack 1</li>
+                        <li>placeholdertrack 2</li>
+                        <li>placeholdertrack 3</li>
+                        <li>placeholdertrack 4</li>
+                        <li>placeholdertrack 5</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="album-details">
+                <img src="assets/volume2.jpg" alt="volume 2">
+                <div class="album-info">
+                    <h3>volume 2</h3>
+                    <p>release date: may 31 2023</p>
+                    <p>track list:</p>
+                    <ul>
+                        <li>placeholdertrack 1</li>
+                        <li>placeholdertrack 2</li>
+                        <li>placeholdertrack 3</li>
+                        <li>placeholdertrack 4</li>
+                        <li>placeholdertrack 5</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="album-details">
+                <img src="assets/volume3.jpg" alt="volume 3">
+                <div class="album-info">
+                    <h3>volume 3</h3>
+                    <p>release date: july 23 2023</p>
+                    <p>track list:</p>
+                    <ul>
+                        <li>placeholdertrack 1</li>
+                        <li>placeholdertrack 2</li>
+                        <li>placeholdertrack 3</li>
+                        <li>placeholdertrack 4</li>
+                        <li>placeholdertrack 5</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="album-details">
+                <img src="assets/volume4.jpg" alt="volume 4">
+                <div class="album-info">
+                    <h3>volume 4</h3>
+                    <p>release date: july 25 2023</p>
+                    <p>track list:</p>
+                    <ul>
+                        <li>placeholdertrack 1</li>
+                        <li>placeholdertrack 2</li>
+                        <li>placeholdertrack 3</li>
+                        <li>placeholdertrack 4</li>
+                        <li>placeholdertrack 5</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="album-details">
+                <img src="assets/volume5.jpg" alt="volume 5">
+                <div class="album-info">
+                    <h3>volume 5</h3>
+                    <p>release date: august 23 2023</p>
+                    <p>track list:</p>
+                    <ul>
+                        <li>placeholdertrack 1</li>
+                        <li>placeholdertrack 2</li>
+                        <li>placeholdertrack 3</li>
+                        <li>placeholdertrack 4</li>
+                        <li>placeholdertrack 5</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="album-details">
+                <img src="assets/volume6.jpg" alt="volume 6">
+                <div class="album-info">
+                    <h3>volume 6</h3>
+                    <p>release date: september 26 2023</p>
+                    <p>track list:</p>
+                    <ul>
+                        <li>placeholdertrack 1</li>
+                        <li>placeholdertrack 2</li>
+                        <li>placeholdertrack 3</li>
+                        <li>placeholdertrack 4</li>
+                        <li>placeholdertrack 5</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="album-details">
+                <img src="assets/volume7.jpg" alt="volume 7">
+                <div class="album-info">
+                    <h3>volume 7</h3>
+                    <p>release date: november 11 2023</p>
+                    <p>track list:</p>
+                    <ul>
+                        <li>placeholdertrack 1</li>
+                        <li>placeholdertrack 2</li>
+                        <li>placeholdertrack 3</li>
+                        <li>placeholdertrack 4</li>
+                        <li>placeholdertrack 5</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="album-details">
+                <img src="assets/volume8.png" alt="volume 8" style="filter: blur(5px);">
+                <div class="album-info">
+                    <h3>volume 8</h3>
+                    <p>release date: soon</p>
+                    <p>track list:</p>
+                    <ul>
+                        <li>placeholdertrack 1</li>
+                        <li>placeholdertrack 2</li>
+                        <li>placeholdertrack 3</li>
+                        <li>placeholdertrack 4</li>
+                        <li>placeholdertrack 5</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            &copy; 2024 manegang collective & meevin records
+        </footer>
+    </div>
+
+    <script>
+        let posX = 0;
+        let posY = 0;
+        const smoothFactor = 0.2;
+
+        document.addEventListener('mousemove', function (e) {
+            const container = document.querySelector('.container');
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+
+            const centerX = 0.5;
+            const centerY = 0.5;
+
+            const distanceX = x - centerX;
+            const distanceY = y - centerY;
+
+            const sensitivity = 16;
+            const targetX = distanceX * sensitivity; 
+            const targetY = distanceY * sensitivity; 
+
+            posX += (targetX - posX) * smoothFactor;
+            posY += (targetY - posY) * smoothFactor;
+
+            container.style.transform = `translate(${posX}px, ${posY}px)`;
+        });
+    </script>
+</body>
+</html>
