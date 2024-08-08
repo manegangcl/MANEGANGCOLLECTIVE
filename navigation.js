@@ -1,33 +1,41 @@
-document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', function (e) {
-        e.preventDefault();
-        const url = this.getAttribute('href');
-        const contentContainer = document.querySelector('.content');
-
-        loadContent(url, contentContainer).then(() => {
-            reapplyStyles();
-            // Reinitialize any JS or CSS-related components if necessary
+document.addEventListener('DOMContentLoaded', function () {
+    const links = document.querySelectorAll('.nav-links a');
+    
+    links.forEach(link => {
+        link.addEventListener('click', function (event) {
+            event.preventDefault(); // Prevent default anchor behavior
+            const href = this.getAttribute('href');
+            loadPage(href);
         });
-
-        history.pushState(null, null, url);
     });
-});
 
-async function loadContent(url, container) {
-    try {
-        const response = await fetch(url);
-        if (!response.ok) {
-            throw new Error('Network response was not ok.');
-        }
-        const html = await response.text();
-        container.innerHTML = html;
+    function loadPage(url) {
+        fetch(url)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok: ' + response.statusText);
+                }
+                return response.text();
+            })
+            .then(html => {
+                // Replace content with new page
+                const content = document.querySelector('.content');
+                content.innerHTML = html;
 
-        // Manually run the scripts or inline styles if any
-        const scripts = container.querySelectorAll('script');
-        scripts.forEach(script => eval(script.textContent));
-
-    } catch (error) {
-        console.error('Error loading page:', error);
-        container.innerHTML = '<p>Error loading content.</p>';
+                // Reapply styles if necessary
+                applyStyles();
+            })
+            .catch(error => {
+                console.error('Error loading page:', error);
+            });
     }
-}
+
+    function applyStyles() {
+        // Reapply any inline styles if needed
+        const newElements = document.querySelectorAll('.album-info');
+        newElements.forEach(element => {
+            element.style.color = '#cccccc'; // Example style, adjust as needed
+            // Apply any other styles you need to ensure they display correctly
+        });
+    }
+});
