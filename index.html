@@ -298,6 +298,7 @@
 
         document.addEventListener('mousemove', function (e) {
             const container = document.querySelector('.container');
+            //const body = document.querySelector('body');
             const x = e.clientX / window.innerWidth;
             const y = e.clientY / window.innerHeight;
 
@@ -315,6 +316,7 @@
             posY += (targetY - posY) * smoothFactor;
 
             container.style.transform = `translate(${posX}px, ${posY}px)`;
+            //body.style.transform = `translate(${posX}px, ${posY}px)`;
         });
     </script>
 </body>
