@@ -11,27 +11,26 @@ function loadPage(url) {
             const tempDiv = document.createElement('div');
             tempDiv.innerHTML = html;
 
-            // Get the new CSS links
-            const newStyles = tempDiv.querySelectorAll('link[rel="stylesheet"]');
-            const head = document.head;
-
-            // Remove old styles (if necessary) and add new ones
-            head.querySelectorAll('link[rel="stylesheet"]').forEach(link => link.remove());
-            newStyles.forEach(link => {
-                const newLink = document.createElement('link');
-                newLink.rel = 'stylesheet';
-                newLink.href = link.href;
-                head.appendChild(newLink);
-            });
-
             // Replace content with new page
             const content = document.querySelector('.content');
             content.innerHTML = tempDiv.querySelector('.content').innerHTML;
 
-            // Reapply styles if necessary
+            // Optionally reapply inline styles if needed
             applyStyles();
         })
         .catch(error => {
             console.error('Error loading page:', error);
         });
+}
+
+function applyStyles() {
+    const allElements = document.querySelectorAll('.content *');
+    allElements.forEach(element => {
+        // Reapply inline styles if needed
+        // You can customize this function to handle specific inline styles
+        if (element.style.cssText) {
+            // For example, logging inline styles to verify
+            console.log(element.style.cssText);
+        }
+    });
 }
