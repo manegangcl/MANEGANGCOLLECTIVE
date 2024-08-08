@@ -91,7 +91,7 @@
             height: 130px; 
             border-radius: 12px;
             overflow: hidden;
-            transition: filter 0.3s ease;
+            transition: filter 0.3s cubic-bezier(.04,.95,0,.95);
         }
         .album-cover img {
             width: 100%;
@@ -108,10 +108,10 @@
             font-size: 18px; 
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
             opacity: 0;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.3s ease-out;
         }
         .album-cover:hover img {
-            filter: blur(2px);
+            filter: blur(2.3px);
         }
         .album-cover:hover .album-title {
             opacity: 1;
