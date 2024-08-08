@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>manegang collective - contacts</title>
+    <link rel="icon" href="assets/favicon.png" type="image/x-icon">
+    <style>
+        @font-face {
+            font-family: 'CustomFont';
+            src: url('assets/font1.otf') format('opentype');
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'CustomFont', sans-serif;
+            background-color: #0a0a0a;
+            background-image: url('assets/bg.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+            color: #cccccc;
+            height: 100%;
+            overflow: auto;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            scrollbar-width: none; /* firefox */
+            user-select: none;
+        }
+
+        body::-webkit-scrollbar {
+            display: none; /* chrome safari edge */
+        }
+        .container {
+            max-width: 1200px; 
+            width: 90%; 
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.22);
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(6.9px);
+            -webkit-backdrop-filter: blur(6.9px);
+            border: 1px solid rgba(0, 0, 0, 0.14);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.1s ease-out;
+            will-change: transform;
+            margin-top: 35px;
+        }
+        header {
+            text-align: center;
+            padding: 10px 0;
+        }
+        .logo {
+            max-width: 50%; 
+            height: auto;
+            margin-top: -80px;
+            margin-bottom: -140px;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            margin: 15px 0;
+        }
+        .nav-links a {
+            color: #ffffff;
+            text-transform: lowercase;
+            font-size: 14px;
+            letter-spacing: 1px;
+            margin: 0 15px;
+            transition: color 0.3s;
+            text-decoration: none;
+            filter: antialiased;
+        }
+        .nav-links a:hover {
+            color: #cccccc;
+            filter: blur(1px);
+        }
+        .content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+            width: 100%;
+            max-width: 800px;
+        }
+        h2 {
+            margin-top: -9px;
+            margin-bottom: 15px;
+            font-size: 24px; 
+        }
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            font-size: 12px;
+            color: #e0e0e0;
+        }
+        footer a {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+        footer a:hover {
+            color: #cccccc;
+        }
+    </style>
+
+<meta property="og:title" content="manegang collective">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="assets/logo.png" alt="manegang collective logo" class="logo">
+        </header>
+        
+        <div class="nav-links">
+            <a href="index.html">home</a>
+            <a href="releases.html">releases</a>
+            <a href="contacts.html">contacts</a>
+        </div>
+        <footer>
+            &copy; 2024 manegang collective & meevin records
+        </footer>
+    </div>
+
+    <script>
+        let posX = 0;
+        let posY = 0;
+        const smoothFactor = 0.2;
+
+        document.addEventListener('mousemove', function (e) {
+            const container = document.querySelector('.container');
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+
+            const centerX = 0.5;
+            const centerY = 0.5;
+
+            const distanceX = x - centerX;
+            const distanceY = y - centerY;
+
+            const sensitivity = 16;
+            const targetX = distanceX * sensitivity; 
+            const targetY = distanceY * sensitivity; 
+
+            posX += (targetX - posX) * smoothFactor;
+            posY += (targetY - posY) * smoothFactor;
+
+            container.style.transform = `translate(${posX}px, ${posY}px)`;
+        });
+    </script>
+</body>
+</html>
