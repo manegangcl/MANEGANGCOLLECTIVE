@@ -1,3 +1,7 @@
+function isMobileDevice() {
+    return /Mobi|Android|iPad|iPhone|iPod/i.test(navigator.userAgent);
+}
+
 function smoothScroll(target, duration) {
     const targetPosition = target.getBoundingClientRect().top + window.scrollY;
     const startPosition = window.scrollY;
@@ -9,7 +13,6 @@ function smoothScroll(target, duration) {
         const timeElapsed = currentTime - startTime;
         const progress = Math.min(timeElapsed / duration, 1);
 
-        // Smooth easing function for a more gradual scroll
         const easing = 0.5 - Math.cos(progress * Math.PI) / 2;
 
         window.scrollTo(0, startPosition + distance * easing);
@@ -27,10 +30,27 @@ function initSmoothScrolling() {
 
             const target = document.querySelector(this.getAttribute('href'));
             if (target) {
-                smoothScroll(target, 2000); // Increase duration here
+                smoothScroll(target, 2000);
             }
         });
     });
 }
 
-document.addEventListener('DOMContentLoaded', initSmoothScrolling);
+document.addEventListener('DOMContentLoaded', function () {
+    initSmoothScrolling();
+    
+    if (isMobileDevice()) {
+        const message = document.createElement('div');
+        message.style.position = 'fixed';
+        message.style.top = '50%';
+        message.style.left = '50%';
+        message.style.transform = 'translate(-50%, -50%)';
+        message.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+        message.style.color = '#fff';
+        message.style.padding = '20px';
+        message.style.borderRadius = '8px';
+        message.style.zIndex = '9999';
+        message.innerText = 'Mobile support is not yet implemented.';
+        document.body.appendChild(message);
+    }
+});
