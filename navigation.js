@@ -1,5 +1,5 @@
 function isMobileDevice() {
-    return /Mobi|Android|iPad|iPhone|iPod/i.test(navigator.userAgent);
+    return /Mobi|Android/i.test(navigator.userAgent);
 }
 
 function smoothScroll(target, duration) {
@@ -12,7 +12,6 @@ function smoothScroll(target, duration) {
         if (startTime === null) startTime = currentTime;
         const timeElapsed = currentTime - startTime;
         const progress = Math.min(timeElapsed / duration, 1);
-
         const easing = 0.5 - Math.cos(progress * Math.PI) / 2;
 
         window.scrollTo(0, startPosition + distance * easing);
@@ -27,7 +26,6 @@ function initSmoothScrolling() {
     document.querySelectorAll('.content a[href*="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
-
             const target = document.querySelector(this.getAttribute('href'));
             if (target) {
                 smoothScroll(target, 2000);
@@ -36,11 +34,29 @@ function initSmoothScrolling() {
     });
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-    console.log(navigator.userAgent); // log user agent (i have no idea what im doing)
+function rearrangeForMobile() {
+    const container = document.querySelector('.container');
+    const navLinks = document.querySelector('.nav-links');
+    const albumCovers = document.querySelectorAll('.album-cover');
 
-    initSmoothScrolling();
-    
+    // Adjust styles for mobile devices
+    if (isMobileDevice()) {
+        container.style.padding = '10px'; // Adjust padding for mobile
+        container.style.height = 'auto'; // Allow height to be determined by content
+
+        // Stack nav links vertically
+        navLinks.style.flexDirection = 'column'; 
+        navLinks.style.alignItems = 'center'; 
+
+        // Adjust album cover layout
+        albumCovers.forEach(cover => {
+            cover.style.width = '90%'; // Adjust width for mobile
+            cover.style.margin = '10px auto'; // Center album covers
+        });
+    }
+}
+
+function displayMobileMessage() {
     if (isMobileDevice()) {
         const message = document.createElement('div');
         message.style.position = 'fixed';
@@ -52,7 +68,14 @@ document.addEventListener('DOMContentLoaded', function () {
         message.style.padding = '20px';
         message.style.borderRadius = '8px';
         message.style.zIndex = '9999';
-        message.innerText = 'mobile support is not yet implemented, it is planned';
+        message.innerText = 'Mobile support is being implemented. Layout adjustments are in place.';
         document.body.appendChild(message);
     }
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    console.log(navigator.userAgent); // Log user agent
+    initSmoothScrolling();
+    rearrangeForMobile(); // Adjust layout for mobile
+    displayMobileMessage(); // Show message for mobile users
 });
