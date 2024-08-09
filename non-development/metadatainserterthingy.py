@@ -8,7 +8,7 @@ from PyQt6.QtCore import Qt
 class MetadataEditor(QWidget):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("l0xd8 funny html meta editor haha")
+        self.setWindowTitle("l0xd8 funny fucking html meta editor")
 
         self.layout = QVBoxLayout()
 
@@ -18,18 +18,18 @@ class MetadataEditor(QWidget):
         self.image_input = QLineEdit()
         self.url_input = QLineEdit()
 
-        self.form_layout.addRow(QLabel("title:"), self.title_input)
-        self.form_layout.addRow(QLabel("description:"), self.description_input)
-        self.form_layout.addRow(QLabel("image url:"), self.image_input)
-        self.form_layout.addRow(QLabel("page url:"), self.url_input)
+        self.form_layout.addRow(QLabel("fucking title:"), self.title_input)
+        self.form_layout.addRow(QLabel("fucking description:"), self.description_input)
+        self.form_layout.addRow(QLabel("fucking image url:"), self.image_input)
+        self.form_layout.addRow(QLabel("fucking page url:"), self.url_input)
 
         self.layout.addLayout(self.form_layout)
 
-        self.load_button = QPushButton("load html file")
+        self.load_button = QPushButton("load the fucking html file")
         self.load_button.clicked.connect(self.load_html)
         self.layout.addWidget(self.load_button)
 
-        self.save_button = QPushButton("save metadata")
+        self.save_button = QPushButton("save the fucking metadata")
         self.save_button.clicked.connect(self.save_metadata)
         self.layout.addWidget(self.save_button)
 
@@ -38,7 +38,7 @@ class MetadataEditor(QWidget):
         self.html_content = ""
 
     def load_html(self):
-        file_name, _ = QFileDialog.getOpenFileName(self, "open html file", "", "HTML Files (*.html *.htm)")
+        file_name, _ = QFileDialog.getOpenFileName(self, "open the fucking html file", "", "HTML Files (*.html *.htm)")
         if file_name:
             with open(file_name, "r", encoding="utf-8") as file:
                 self.html_content = file.read()
@@ -71,7 +71,7 @@ class MetadataEditor(QWidget):
         url = self.url_input.text().strip().lower()
 
         if not any([title, description, image, url]):
-            QMessageBox.warning(self, "error", "please put at least one field to save.")
+            QMessageBox.warning(self, "error", "put at least one field to save, fucking idiot.")
             return
 
         new_metadata = []
@@ -91,11 +91,11 @@ class MetadataEditor(QWidget):
                 self.html_content[head_end_index:]
             )
         
-        file_name, _ = QFileDialog.getSaveFileName(self, "save html file", "", "HTML Files (*.html *.htm)")
+        file_name, _ = QFileDialog.getSaveFileName(self, "save your fucking uhh html thing", "", "HTML Files (*.html *.htm)")
         if file_name:
             with open(file_name, "w", encoding="utf-8") as file:
                 file.write(self.html_content)
-                QMessageBox.information(self, "success", "metadata saved successfully.")
+                QMessageBox.information(self, "success", "metadata saved goodly")
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
