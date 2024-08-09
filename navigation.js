@@ -37,6 +37,8 @@ function initSmoothScrolling() {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
+    console.log(navigator.userAgent); // Log the user agent
+
     initSmoothScrolling();
     
     if (isMobileDevice()) {
@@ -45,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function () {
         message.style.top = '50%';
         message.style.left = '50%';
         message.style.transform = 'translate(-50%, -50%)';
-        message.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+        message.style.backgroundColor = 'red'; // Temporary change for visibility
         message.style.color = '#fff';
         message.style.padding = '20px';
         message.style.borderRadius = '8px';
