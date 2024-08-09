@@ -125,41 +125,41 @@
             margin: 20px 0;
         }
     </style>
-<meta content="manegang collective" property="og:title"/>
-<meta content="manegang collective - credit" property="og:title"/>
+<meta content="manegang collective" property="og:title" />
+<meta content="manegang collective - credit" property="og:title" />
 </head>
+
 <body>
-<div class="container">
-<header>
-<img alt="manegang collective logo" class="logo" src="assets/logo.png"/>
-</header>
-<div class="nav-links">
-<a data-target="index.html" href="index.html">home</a>
-<a data-target="releases.html" href="releases.html">releases</a>
-<a data-target="contacts.html" href="contacts.html">contacts</a>
-</div>
-<div class="content">
-<h2>credit</h2>
-<div class="credits">
-<p>project by: manegang collective ; meevin records</p>
-<p>web design by: l0xd8</p>
-<p>starting development by: dubbedyoshhi, skiwellz</p>
-</div>
-</div>
-<footer>
-<a class="footerlink" href="credit.html">© 2024 manegang collective &amp; meevin records</a>
-</footer>
-</div>
+    <div class="container">
+        <header>
+            <img alt="manegang collective logo" class="logo" src="assets/logo.png" />
+        </header>
+        <div class="nav-links">
+            <a data-target="index.html" href="index.html">home</a>
+            <a data-target="releases.html" href="releases.html">releases</a>
+            <a data-target="contacts.html" href="contacts.html">contacts</a>
+        </div>
+        <div class="content">
+            <h2>credit</h2>
+            <div class="credits">
+                <p>project by: manegang collective ; meevin records</p>
+                <p>web design by: l0xd8</p>
+                <p>starting development by: dubbedyoshhi, skiwellz</p>
+            </div>
+        </div>
+        <footer>
+            <a class="footerlink" href="credit.html">© 2024 manegang collective &amp; meevin records</a>
+        </footer>
+    </div>
 <script>
-        let posX = 0;
+let posX = 0;
         let posY = 0;
-        const smoothFactor = 0.1; // <-- adjust for more/less sens
+        const smoothFactor = 0.07;
         let targetX = 0;
         let targetY = 0;
         const container = document.querySelector('.container');
 
-        document.addEventListener('mousemove', function (e) {
-            // get target from clientxy mouse pos
+        document.addEventListener('mousemove', (e) => {
             const x = e.clientX / window.innerWidth;
             const y = e.clientY / window.innerHeight;
 
@@ -169,26 +169,24 @@
             const distanceX = x - centerX;
             const distanceY = y - centerY;
 
-            const sensitivity = 16;
-            targetX = distanceX * sensitivity; 
-            targetY = distanceY * sensitivity; 
+            const sensitivity = 12;
+            targetX = distanceX * sensitivity;
+            targetY = distanceY * sensitivity;
         });
 
-        // update precursivly??
         function updatePosition() {
             posX += (targetX - posX) * smoothFactor;
             posY += (targetY - posY) * smoothFactor;
 
-            // apply transform to container
-            container.style.transform = `translate(${posX}px, ${posY}px) translateZ(0)`;
+            container.style.transform = `translate3d(${posX}px, ${posY}px, 0)`;
 
-            // req next ani frame
             requestAnimationFrame(updatePosition);
         }
 
-        // start ani loop
-        updatePosition();
-        // i am l0xd8 and i made this sick code snippet
+        window.addEventListener('load', () => {
+            requestAnimationFrame(updatePosition);
+        });
+        // im l0xd8 and i made this sick code snippet
     </script>
 <html><head><script defer="" src="mobileSupport.js"></script></head></html></body>
 </html>
