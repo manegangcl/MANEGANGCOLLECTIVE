@@ -17,6 +17,9 @@ function loadPage(url) {
 
             // Optionally reapply inline styles if needed
             applyStyles();
+
+            // Reinitialize smooth scrolling for anchors in the new content
+            initSmoothScrolling();
         })
         .catch(error => {
             console.error('Error loading page:', error);
@@ -34,3 +37,21 @@ function applyStyles() {
         }
     });
 }
+
+function initSmoothScrolling() {
+    // Select all links with hashes
+    document.querySelectorAll('.content a[href*="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            // Scroll to the specific section smoothly
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        });
+    });
+}
+
+// Call initSmoothScrolling when the page is loaded for the first time
+document.addEventListener('DOMContentLoaded', initSmoothScrolling);
