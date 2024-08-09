@@ -55,6 +55,9 @@
             margin-top: 1.8vh; /* Remove margin-top */
             margin-bottom: 20px; /* Added px to specify unit */
         }
+        .container::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, and Edge */
+        }
 
         header {
             text-align: center;
@@ -147,44 +150,6 @@
     </div>
 
     <script>
-        let posX = 0;
-        let posY = 0;
-        const smoothFactor = 0.1; // <-- adjust for more/less sens
-        let targetX = 0;
-        let targetY = 0;
-        const container = document.querySelector('.container');
-
-        document.addEventListener('mousemove', function (e) {
-            // get target from clientxy mouse pos
-            const x = e.clientX / window.innerWidth;
-            const y = e.clientY / window.innerHeight;
-
-            const centerX = 0.5;
-            const centerY = 0.5;
-
-            const distanceX = x - centerX;
-            const distanceY = y - centerY;
-
-            const sensitivity = 16;
-            targetX = distanceX * sensitivity; 
-            targetY = distanceY * sensitivity; 
-        });
-
-        // update precursivly??
-        function updatePosition() {
-            posX += (targetX - posX) * smoothFactor;
-            posY += (targetY - posY) * smoothFactor;
-
-            // apply transform to container
-            container.style.transform = `translate(${posX}px, ${posY}px) translateZ(0)`;
-
-            // req next ani frame
-            requestAnimationFrame(updatePosition);
-        }
-
-        // start ani loop
-        updatePosition();
-        // i am l0xd8 and i made this sick code snippet
     </script>
 </body>
 </html>
