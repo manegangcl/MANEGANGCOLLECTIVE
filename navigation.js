@@ -257,7 +257,7 @@ document.addEventListener('DOMContentLoaded', function () {
         message.style.padding = '20px';
         message.style.borderRadius = '8px';
         message.style.zIndex = '9999';
-        message.innerText = 'mobile support is not yet implemented, it is planned';
+        message.innerText = 'Mobile support is not yet implemented.';
         document.body.appendChild(message);
     }
 });
