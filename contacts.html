@@ -55,6 +55,10 @@
             margin-top: 1.8vh; /* Remove margin-top */
             margin-bottom: 20px; /* Added px to specify unit */
         }
+
+        .container::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, and Edge */
+        }
         header {
             text-align: center;
             padding: 10px 0;
@@ -110,6 +114,7 @@
             padding-bottom: 20px;
             border-radius: 8px;
             width: 100%;
+            margin-top: 1.8vh;
         }
         .contact-info p {
             margin: 5px 0;
@@ -134,7 +139,7 @@
             margin-bottom: -20px;
             width: 100px;
         }
-        .l0xd8spotify {
+        .spotifybutton {
             display: inline-block;
             background-image: linear-gradient(to right, #1ED760 0%, #1ED760  51%, #1ED760  100%);
             padding: 10px 20px;
@@ -146,11 +151,23 @@
             /* margin-top: 1px; */
             margin-top: 6px;
         }
-        .l0xd8soundcloud {
+        .soundcloudbutton {
             display: inline-block;
             background-image: linear-gradient(to right, #F25519 0%, #F25519  51%, #F25519  100%);
             padding: 10px 20px;
             background-color: #F25519;
+            color: #f7f7f7;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            /* margin-top: 1px; */
+            margin-top: 6px;
+        }
+        .l0xd8hyperfollow {
+            display: inline-block;
+            background-image: linear-gradient(to right, #3278B8 0%, #3278B8  51%, #3278B8  100%);
+            padding: 10px 20px;
+            background-color: #3278B8;
             color: #f7f7f7;
             text-decoration: none;
             border-radius: 8px;
@@ -185,8 +202,21 @@
             <div class="contact-info">
                 <img alt="l0xd8" class="l0xd8" src="assets/l0xd8.png" />
                 <h3 style="margin-left: 1.5px;">l0xd8</h3>
-                <p><a class="l0xd8spotify" href="zr.spotifyl0xd8.html">spotify</a></p>
-                <p><a class="l0xd8soundcloud" href="zr.soundcloudl0xd8.html">soundcloud</a></p>
+                <p><a class="spotifybutton" href="redirects/zr.spotifyl0xd8.html">spotify</a></p>
+                <p><a class="soundcloudbutton" href="redirects/zr.soundcloudl0xd8.html">soundcloud</a></p>
+                <p><a class="l0xd8hyperfollow" href="redirects/zr.hyperfollowl0xd8.html">hyperfollow</a></p>
+            </div>
+            <div class="contact-info">
+                <img alt="l0xd8" class="l0xd8" src="assets/skiwellz.png" />
+                <h3 style="margin-left: 1.5px;">skiwellz</h3>
+                <p><a class="spotifybutton" href="redirects/zr.spotifyskiwellz.html">spotify</a></p>
+                <p><a class="soundcloudbutton" href="redirects/zr.soundcloudskiwellz.html">soundcloud</a></p>
+            </div>
+            <div class="contact-info">
+                <img alt="l0xd8" class="l0xd8" src="assets/dubbedyoshhi.png" />
+                <h3 style="margin-left: 1.5px;">dubbedyoshhi</h3>
+                <p><a class="spotifybutton" href="redirects/zr.spotifydubbedyoshhi.html">spotify</a></p>
+                <p><a class="soundcloudbutton" href="redirects/zr.soundclouddubbedyoshhi.html">soundcloud</a></p>
             </div>
         </div>
         <footer>
@@ -194,7 +224,7 @@
         </footer>
     </div>
 <script>
-let posX = 0;
+        let posX = 0;
         let posY = 0;
         const smoothFactor = 0.07;
         let targetX = 0;
@@ -228,7 +258,7 @@ let posX = 0;
         window.addEventListener('load', () => {
             requestAnimationFrame(updatePosition);
         });
-        // im l0xd8 and i made this sick code snippet
+        // im l0xd8 and i made this sick code ni
     </script>
 <html><head><script defer="" src="mobileSupport.js"></script></head></html></body>
 </html>
