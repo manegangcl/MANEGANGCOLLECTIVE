@@ -7,58 +7,8 @@
 <title>manegang collective - contacts</title>
 <script defer="" src="navigation.js"></script>
 <link href="assets/favicon.png" rel="icon" type="image/x-icon"/>
+<link rel="stylesheet" href="cstyle.css">
 <style>
-        @font-face {
-            font-family: 'manegangfont';
-            src: url('assets/font1.otf') format('opentype');
-        }
-        body, html {
-            margin: 0;
-            padding: 0;
-            font-family: 'manegangfont', sans-serif;
-            background-color: #0a0a0a;
-            background-image: url('assets/bg.jpg');
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-attachment: fixed; 
-            color: #cccccc;
-            height: 100vh; /* Set body to full height of the viewport */
-            overflow: hidden; /* Hide scrollbars on the body */
-            display: flex;
-            flex-direction: column; /* Column direction */
-            justify-content: center; /* Center vertically */
-            align-items: center; /* Center horizontally */
-            scrollbar-width: none; 
-            user-select: none;
-        }
-        body::-webkit-scrollbar {
-            display: none; /* chrome safari edge */
-        }
-        .container {
-            max-width: 1200px; 
-            width: 90%; 
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.22);
-            border-radius: 16px;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(6.9px);
-            -webkit-backdrop-filter: blur(6.9px);
-            border: 1px solid rgba(0, 0, 0, 0.14);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            transition: transform 0.1s ease-out;
-            will-change: transform;
-            position: relative;
-            height: 80vh; /* Fixed height for the container */
-            overflow-y: auto;  /* Allows vertical scrolling */
-            margin-top: 1.8vh; /* Remove margin-top */
-            margin-bottom: 20px; /* Added px to specify unit */
-        }
-
-        .container::-webkit-scrollbar {
-            display: none; /* Chrome, Safari, and Edge */
-        }
         header {
             text-align: center;
             padding: 10px 0;
@@ -175,6 +125,18 @@
             /* margin-top: 1px; */
             margin-top: 6px;
         }
+        .youtubebutton {
+            display: inline-block;
+            background-image: linear-gradient(to right, #FF001D 0%, #FF001D  51%, #FF001D  100%);
+            padding: 10px 20px;
+            background-color: #FF001D;
+            color: #f7f7f7;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            /* margin-top: 1px; */
+            margin-top: 6px;
+        }
     </style>
 <meta content="manegang collective - contacts" property="og:title" />
 </head>
@@ -209,14 +171,15 @@
             <div class="contact-info">
                 <img alt="l0xd8" class="l0xd8" src="assets/skiwellz.png" />
                 <h3 style="margin-left: 1.5px;">skiwellz</h3>
+                <p><a class="youtubebutton" href="redirects/zr.youtubeskiwellz.html">youtube</a></p>
                 <p><a class="spotifybutton" href="redirects/zr.spotifyskiwellz.html">spotify</a></p>
                 <p><a class="soundcloudbutton" href="redirects/zr.soundcloudskiwellz.html">soundcloud</a></p>
             </div>
             <div class="contact-info">
                 <img alt="l0xd8" class="l0xd8" src="assets/dubbedyoshhi.png" />
                 <h3 style="margin-left: 1.5px;">dubbedyoshhi</h3>
-                <p><a class="spotifybutton" href="redirects/zr.spotifydubbedyoshhi.html">spotify</a></p>
                 <p><a class="soundcloudbutton" href="redirects/zr.soundclouddubbedyoshhi.html">soundcloud</a></p>
+                <p><a class="spotifybutton" href="redirects/zr.spotifydubbedyoshhi.html">spotify</a></p>
             </div>
         </div>
         <footer>
