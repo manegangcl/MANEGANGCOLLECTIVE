@@ -13,20 +13,17 @@
             text-align: center;
             padding: 10px 0;
         }
-
         .logo {
-            max-width: 50%;
+            max-width: 50%; 
             height: auto;
             margin-top: -80px;
             margin-bottom: -140px;
         }
-
         .nav-links {
             display: flex;
             justify-content: center;
             margin: 15px 0;
         }
-
         .nav-links a {
             color: #ffffff;
             text-transform: lowercase;
@@ -37,12 +34,10 @@
             text-decoration: none;
             filter: antialiased;
         }
-
         .nav-links a:hover {
             color: #cccccc;
             filter: blur(1px);
         }
-
         .content {
             display: flex;
             flex-direction: column;
@@ -336,43 +331,6 @@
         <!--&copy; 2024 manegang collective. All rights reserved. | <a href="#privacy">Privacy Policy</a>-->
     </footer>
     <button class="hidden-button" onclick="location.href='adminlogin.html'"></button>
-    <script>
-        let posX = 0;
-        let posY = 0;
-        const smoothFactor = 0.07;
-        let targetX = 0;
-        let targetY = 0;
-        const container = document.querySelector('.container');
-
-        document.addEventListener('mousemove', (e) => {
-            const x = e.clientX / window.innerWidth;
-            const y = e.clientY / window.innerHeight;
-
-            const centerX = 0.5;
-            const centerY = 0.5;
-
-            const distanceX = x - centerX;
-            const distanceY = y - centerY;
-
-            const sensitivity = 12;
-            targetX = distanceX * sensitivity;
-            targetY = distanceY * sensitivity;
-        });
-
-        function updatePosition() {
-            posX += (targetX - posX) * smoothFactor;
-            posY += (targetY - posY) * smoothFactor;
-
-            container.style.transform = `translate3d(${posX}px, ${posY}px, 0)`;
-
-            requestAnimationFrame(updatePosition);
-        }
-
-        window.addEventListener('load', () => {
-            requestAnimationFrame(updatePosition);
-        });
-        // im l0xd8 and i made this sick code ni
-    </script>
     <script defer="" src="mobileSupport.js"></script>
 </body>
 
