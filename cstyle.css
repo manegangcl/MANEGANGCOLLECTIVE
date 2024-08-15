@@ -1,6 +1,7 @@
 @font-face {
     font-family: 'manegangfont';
     src: url('assets/font1.otf') format('opentype');
+    font-display: swap; /* Ensures text is visible while the font loads */
 }
 
 body, html {
@@ -45,6 +46,7 @@ body::-webkit-scrollbar {
     overflow-y: auto;  /* Allows vertical scrolling */
     margin-top: 1.8vh; /* Remove margin-top */
     margin-bottom: 20px; /* Added px to specify unit */
+
 }
 .container::-webkit-scrollbar {
     display: none; /* Chrome, Safari, and Edge */
