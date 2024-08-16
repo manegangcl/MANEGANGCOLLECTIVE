@@ -22,27 +22,27 @@ document.addEventListener('mousemove', (e) => {
 });
 
 function updatePosition() {
-    // Smoothly interpolate the position using a different approach
+    // smooth interpolate
     posX = posX + (targetX - posX) * smoothFactor;
     posY = posY + (targetY - posY) * smoothFactor;
 
-    // Apply the transformation
+    // apply transform
     container.style.transform = `translate3d(${Math.round(posX)}px, ${Math.round(posY)}px, 0)`;
 
-    // Continue updating the position
+    // keep updating
     requestAnimationFrame(updatePosition);
 }
 
-// Start the animation loop
+// start loop
 function initializeAnimation() {
-    // Ensure initial values are properly set
+    // make sure initials are right
     posX = targetX;
     posY = targetY;
 
     requestAnimationFrame(updatePosition);
 }
 
-// Start the animation on page load
+// start on full page load
 window.addEventListener('load', initializeAnimation);
 
 // im l0xd8 and i made this sick javascript function
