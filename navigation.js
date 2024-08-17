@@ -64,6 +64,6 @@ document.addEventListener('DOMContentLoaded', function () {
             script.innerHTML = code;
             document.body.appendChild(script);
         })
-        .catch(error => console.error('Error loading dynamicalertmessage Gist:', error));
+        .catch(error => console.error('error loading dynamicalertmessage gist:', error));
 
 });

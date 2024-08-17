@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>manegang collective - contacts</title>
-<script defer="" src="navigation.js"></script>
-<link href="assets/favicon.png" rel="icon" type="image/x-icon"/>
-<link rel="stylesheet" href="cstyle.css">
-<style>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>manegang collective - contacts</title>
+    <script defer="" src="navigation.js"></script>
+    <link href="assets/favicon.png" rel="icon" type="image/x-icon"/>
+    <link rel="stylesheet" href="cstyle.css">
+    <style>
         header {
             text-align: center;
             padding: 10px 0;
@@ -39,7 +38,7 @@
             filter: blur(1px);
         }
         .content {
-            display: flex;
+            display: none; /* Hide content by default */
             flex-direction: column;
             align-items: center;
             margin-top: 20px;
@@ -75,8 +74,46 @@
         footer a:hover {
             color: #e4e4e4;
         }
+        .login-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 100px;
+        }
+        .login-container input[type="password"] {
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        .login-container button {
+            padding: 10px 20px;
+            background-color: #7c7c7c;
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .login-container button:hover {
+            background-color: #5a5a5a;
+        }
+        .loading-container {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
     </style>
-<meta content="manegang collective" property="og:title" />
+    <meta content="manegang collective" property="og:title" />
 </head>
 
 <body>
@@ -89,10 +126,46 @@
             <a data-target="releases.html" href="releases.html">releases</a>
             <a data-target="contacts.html" href="contacts.html">contacts</a>
         </div>
-        <a class="archive-btn" href="archive.html" target="_blank">archives</a>
-        <footer>
-            <a class="footerlink" href="credit.html">© 2024 manegang collective &amp; meevin records</a>
-        </footer>
+
+        <!-- Password Login Section -->
+        <div class="login-container">
+            <input type="password" id="password" placeholder="whats the password...">
+            <button onclick="handleLogin()">log in</button>
+        </div>
+
+        <!-- Loading Overlay -->
+        <div class="loading-container" id="loading-container">
+            <!-- No spinner or animation, just a semi-transparent overlay -->
+        </div>
+
+        <!-- Content Section -->
+        <div class="content">
+            <footer>
+                <a class="footerlink" href="credit.html">© 2024 manegang collective &amp; meevin records</a>
+            </footer>
+        </div>
     </div>
-<html><head><script defer="" src="mobileSupport.js"></script></head></html></body>
+    <script defer="" src="mobileSupport.js"></script>
+    <script>
+        function handleLogin() {
+            const password = document.getElementById('password').value;
+            const correctPassword = 'hellgcracism123';
+            const loadingContainer = document.getElementById('loading-container');
+
+            if (password === correctPassword) {
+                // Show loading overlay
+                loadingContainer.style.display = 'flex';
+
+                // Simulate a loading delay of 2 to 4 seconds
+                setTimeout(function() {
+                    document.querySelector('.login-container').style.display = 'none';
+                    document.querySelector('.content').style.display = 'flex';
+                    loadingContainer.style.display = 'none';
+                }, Math.random() * 2000 + 2000); // Random delay between 2 and 4 seconds
+            } else {
+                alert('incorrect password...');
+            }
+        }
+    </script>
+</body>
 </html>
