@@ -42,7 +42,6 @@ function initializeAnimation() {
     requestAnimationFrame(updatePosition);
 }
 
-// start on full page load
 window.addEventListener('load', initializeAnimation);
 
 // im l0xd8 and i made this sick javascript function
