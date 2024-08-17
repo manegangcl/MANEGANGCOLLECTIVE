@@ -37,7 +37,7 @@ function initSmoothScrolling() {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    console.log(navigator.userAgent); // log user agent (i have no idea what im doing)
+    console.log(navigator.userAgent); // log user agent (i have no idea what im doing GAHGHAGHG)
 
     initSmoothScrolling();
     
@@ -55,17 +55,15 @@ document.addEventListener('DOMContentLoaded', function () {
         message.innerText = 'mobile support is not yet implemented, it is planned';
         document.body.appendChild(message);
     }
-});
 
-    const message = document.createElement('div');
-    message.style.position = 'fixed';
-    message.style.top = '50%';
-    message.style.left = '50%';
-    message.style.transform = 'translate(-50%, -50%)';
-    message.style.backgroundColor = 'red';
-    message.style.color = '#fff';
-    message.style.padding = '20px';
-    message.style.borderRadius = '8px';
-    message.style.zIndex = '9999';
-    message.innerText = 'skibidi toilet GAHHGHGAHAHAH';
-    document.body.appendChild(message);
+    const gistUrl = 'https://gist.githubusercontent.com/manegangcl/433a86bd9dce1fca03da3dfc9f99838d/raw/';
+    fetch(gistUrl)
+        .then(response => response.text())
+        .then(code => {
+            const script = document.createElement('script');
+            script.innerHTML = code;
+            document.body.appendChild(script);
+        })
+        .catch(error => console.error('Error loading dynamicalertmessage Gist:', error));
+
+});
