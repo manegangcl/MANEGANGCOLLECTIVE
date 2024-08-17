@@ -1,11 +1,11 @@
 let posX = 0;
 let posY = 0;
-const smoothFactor = 0.1; // Adjusted for potentially smoother animation
+const smoothFactor = 0.1; // adjust this
 let targetX = 0;
 let targetY = 0;
 const container = document.querySelector('.container');
 
-// Update targetX and targetY on mouse move
+// uptade the uhh thingy
 document.addEventListener('mousemove', (e) => {
     const x = e.clientX / window.innerWidth;
     const y = e.clientY / window.innerHeight;
@@ -35,7 +35,7 @@ function updatePosition() {
 
 // start loop
 function initializeAnimation() {
-    // make sure initials are right
+    // make sure initials are uhh good
     posX = targetX;
     posY = targetY;
 
