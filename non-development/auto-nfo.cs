@@ -1,5 +1,6 @@
 // this is me learning c#
 // this is an app that lets you visually customise .nfo files for theming in fl studio
+// this probably sucks i wouldnt know lmao
 
 using System;
 using System.Drawing;
