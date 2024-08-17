@@ -56,3 +56,16 @@ document.addEventListener('DOMContentLoaded', function () {
         document.body.appendChild(message);
     }
 });
+
+    const message = document.createElement('div');
+    message.style.position = 'fixed';
+    message.style.top = '50%';
+    message.style.left = '50%';
+    message.style.transform = 'translate(-50%, -50%)';
+    message.style.backgroundColor = 'red';
+    message.style.color = '#fff';
+    message.style.padding = '20px';
+    message.style.borderRadius = '8px';
+    message.style.zIndex = '9999';
+    message.innerText = 'skibidi toilet GAHHGHGAHAHAH';
+    document.body.appendChild(message);
