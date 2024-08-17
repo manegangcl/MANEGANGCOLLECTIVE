@@ -9,6 +9,12 @@
     <link href="assets/favicon.png" rel="icon" type="image/x-icon" />
     <link rel="stylesheet" href="cstyle.css">
     <style>
+
+        .container {
+            justify-content: center;
+            text-align: center;
+        }
+    
         header {
             text-align: center;
             padding: 10px 0;
@@ -99,7 +105,7 @@
             text-decoration: none;
             border-radius: 8px;
             font-weight: bold;
-            margin-top: 20px;
+            margin-top: 10px;
             transition: background-color 0.3s;
         }
 
@@ -188,23 +194,6 @@
             background-color: #F3F4F6;
             text-decoration: none;
             transition-duration: 0.1s;
-        }
-
-        .streambutton:disabled {
-            background-color: #FAFBFC;
-            border-color: rgba(27, 31, 35, 0.15);
-            color: #959DA5;
-            cursor: default;
-        }
-
-        .streambutton:active {
-            background-color: #EDEFF2;
-            box-shadow: rgba(225, 228, 232, 0.2) 0 1px 0 inset;
-            transition: none 0s;
-        }
-
-        .streambutton:focus {
-            outline: 1px transparent;
         }
 
         .streambutton:before {
@@ -316,7 +305,7 @@
                     <div class="album-title">volume 7</div>
                 </div>
                 <div class="album-cover" style="background-color: black;">
-                    <img alt="volume 8" src="assets/volume8.png" style="filter: blur(5px); -moz-filter: blur(5px); -webkit-filter: blur(5px); filter: invert(100%); -webkit-filter: invert(100%); -moz-filter: invert(100%);" />
+                    <img alt="volume 8" src="assets/volume8.png" style="cursor: not-allowed; filter: blur(5px); -moz-filter: blur(5px); -webkit-filter: blur(5px); filter: invert(100%); -webkit-filter: invert(100%); -moz-filter: invert(100%);" />
                     <div class="album-title"></div>
                 </div>
             </div>
