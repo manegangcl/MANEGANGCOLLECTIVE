@@ -152,19 +152,19 @@
             const correctPassword = 'hellgcracism123';
             const loadingContainer = document.getElementById('loading-container');
 
-            if (password === correctPassword) {
-                // Show loading overlay
-                loadingContainer.style.display = 'flex';
+            // Show loading overlay
+            loadingContainer.style.display = 'flex';
 
-                // Simulate a loading delay of 2 to 4 seconds
-                setTimeout(function() {
+            // Simulate a loading delay of 2 to 4 seconds
+            setTimeout(function() {
+                if (password === correctPassword) {
                     document.querySelector('.login-container').style.display = 'none';
                     document.querySelector('.content').style.display = 'flex';
-                    loadingContainer.style.display = 'none';
-                }, Math.random() * 2000 + 2000); // Random delay between 2 and 4 seconds
-            } else {
-                alert('incorrect password...');
-            }
+                } else {
+                    alert('incorrect password...');
+                }
+                loadingContainer.style.display = 'none';
+            }, Math.random() * 2000 + 2000); // Random delay between 2 and 4 seconds
         }
     </script>
 </body>
