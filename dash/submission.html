@@ -228,10 +228,10 @@
         const db = getFirestore(app);
         const storage = getStorage(app);
     
-        // Check if user is authenticated
+        // check auth
         onAuthStateChanged(auth, (user) => {
             if (!user) {
-                window.location.href = 'login.html'; // Redirect to login if not authenticated
+                window.location.href = 'login.html'; // redirect
             }
         });
     
@@ -245,8 +245,7 @@
     
             if (title && file && album) {
                 try {
-                    // Create formatted file name without converting to lowercase
-                    const fileExtension = file.name.split('.').pop(); // Extract file extension
+                    const fileExtension = file.name.split('.').pop();
                     const formattedFileName = `${title}_${album}.${fileExtension}`;
                     
                     // Create a reference to the Firebase Storage path
@@ -263,9 +262,9 @@
                         submittedAt: new Date()
                     });
     
-                    alert('song submitted successfully!');
+                    alert('song submitted');
                 } catch (error) {
-                    console.error('error submitting song:', error);
+                    console.error('error submitting:', error);
                     alert('failed to submit song.');
                 }
             }
