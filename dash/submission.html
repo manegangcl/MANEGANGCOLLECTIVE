@@ -80,7 +80,7 @@
             margin-top: -9px;
             margin-bottom: 15px;
             font-size: 24px;
-            text-align: center; /* Center the heading text */
+            text-align: center;
         }
 
         footer {
@@ -114,10 +114,10 @@
         .form-group {
             margin-bottom: 15px;
             width: 100%;
-            max-width: 400px; /* Adjust this max-width as needed */
+            max-width: 400px;
             display: flex;
             flex-direction: column;
-            align-items: center; /* Center the form group contents */
+            align-items: center;
         }
 
         .form-group label {
@@ -125,19 +125,20 @@
             margin-bottom: 5px;
             color: #ffffff;
             text-transform: lowercase;
-            text-align: center; /* Center the label text */
+            text-align: center;
         }
 
-        .form-group input, .form-group select {
-            width: 80%; /* Adjust this percentage as needed */
-            max-width: 400px; /* Set a maximum width to prevent the fields from becoming too large */
+        .form-group input,
+        .form-group select {
+            width: 80%;
+            max-width: 400px;
             padding: 10px;
             border: 1px solid #444;
             border-radius: 5px;
             background: #222;
             color: #ffffff;
-            margin: 0 auto; /* Center the fields horizontally */
-            display: block; /* Ensure the fields are displayed as block elements */
+            margin: 0 auto;
+            display: block;
         }
 
         .form-group input[type="file"] {
@@ -152,14 +153,41 @@
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s;
-            width: 100%; /* Make the button take up full width of its container */
-            max-width: 200px; /* Set a max width to prevent the button from becoming too large */
+            width: 100%;
+            max-width: 200px;
         }
 
         .form-group button:hover {
             background-color: #777;
         }
 
+        .custom-file-input {
+            display: none !important;
+        }
+
+        .custom-file-label {
+            display: block;
+            width: 80%;
+            max-width: 400px;
+            padding: 10px;
+            border: 1px solid #444;
+            border-radius: 5px;
+            background: #222;
+            color: #ffffff;
+            margin: 0 auto;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .custom-file-label:hover {
+            background-color: #333;
+        }
+
+        .file-name {
+            margin-top: 5px;
+            font-size: 12px;
+            color: #e0e0e0;
+        }
     </style>
 </head>
 
@@ -184,16 +212,20 @@
                         <input type="text" id="song-title" name="song-title" required>
                     </div>
                     <div class="form-group">
-                        <label for="song-file">upload song</label>
-                        <input type="file" id="song-file" name="song-file" accept="audio/*" required>
+                        <label for="song-file" class="custom-file-label">choose file</label>
+                        <input type="file" id="song-file" name="song-file" accept="audio/*" class="custom-file-input" required>
+                        <span class="file-name">No file chosen</span>
                     </div>
                     <div class="form-group">
                         <label for="album">select album</label>
                         <select id="album" name="album" required>
                             <option value="">select an album</option>
-                            <!-- Example albums, replace with your actual album options -->
                             <option value="album1">oper volume</option>
                         </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="soundcloud-link">soundcloud link (optional)</label>
+                        <input type="url" id="soundcloud-link" name="soundcloud-link">
                     </div>
                     <div class="form-group">
                         <button type="submit">submit song</button>
@@ -212,7 +244,7 @@
         import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js";
         import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js";
         import { getStorage, ref, uploadBytes } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-storage.js";
-    
+
         const firebaseConfig = {
             apiKey: "AIzaSyB-nfx83FdAyip6tfZbfVy75KdZx3q0ZDg",
             authDomain: "manegang-9b41f.firebaseapp.com",
@@ -222,50 +254,61 @@
             appId: "1:880790060479:web:3f36971442c54552e1f50a",
             measurementId: "G-N0SFDRC668"
         };
-    
+
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const db = getFirestore(app);
         const storage = getStorage(app);
-    
+
         // check auth
         onAuthStateChanged(auth, (user) => {
             if (!user) {
                 window.location.href = 'login.html'; // redirect
             }
         });
-    
+
         // Handle form submission
         const form = document.getElementById('submission-form');
+        const fileInput = document.getElementById('song-file');
+        const fileLabel = document.querySelector('.custom-file-label');
+        const fileNameSpan = document.querySelector('.file-name');
+
+        fileLabel.addEventListener('click', () => {
+            fileInput.click();
+        });
+
+        fileInput.addEventListener('change', (event) => {
+            const fileName = event.target.files[0] ? event.target.files[0].name : 'No file chosen';
+            fileNameSpan.textContent = fileName;
+        });
+
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
-            const title = document.getElementById('song-title').value;
-            const file = document.getElementById('song-file').files[0];
+            const songTitle = document.getElementById('song-title').value;
+            const file = fileInput.files[0];
             const album = document.getElementById('album').value;
-    
-            if (title && file && album) {
+            const soundcloudLink = document.getElementById('soundcloud-link').value;
+
+            if (file) {
                 try {
-                    const fileExtension = file.name.split('.').pop();
-                    const formattedFileName = `${title}_${album}.${fileExtension}`;
-                    
-                    // Create a reference to the Firebase Storage path
-                    const storageRef = ref(storage, `songs/${formattedFileName}`);
-                    
-                    // Upload the file
+                    const storageRef = ref(storage, `songs/${file.name}`);
                     await uploadBytes(storageRef, file);
-                    
-                    // Add document to Firestore
+
                     await addDoc(collection(db, 'submissions'), {
-                        title,
+                        songTitle,
                         album,
-                        fileName: formattedFileName,
-                        submittedAt: new Date()
+                        soundcloudLink,
+                        fileName: file.name,
+                        uid: auth.currentUser.uid,
+                        timestamp: new Date(),
                     });
-    
-                    alert('song submitted');
+
+                    alert('Song submitted successfully!');
+                    form.reset();
+                    fileNameSpan.textContent = 'No file chosen';
                 } catch (error) {
-                    console.error('error submitting:', error);
-                    alert('failed to submit song.');
+                    console.error('Error submitting the song:', error);
+                    alert('Failed to submit the song.');
                 }
             }
         });
