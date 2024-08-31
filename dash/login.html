@@ -11,7 +11,6 @@
     <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>
     <style>
-        /* Add your existing styles here or modify as needed */
         header {
             text-align: center;
             padding: 10px 0;
@@ -125,11 +124,9 @@
         </footer>
     </div>
     <script type="module">
-      // Import the functions you need from Firebase SDKs
       import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
       import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js";
 
-      // Your Firebase configuration
       const firebaseConfig = {
         apiKey: "AIzaSyB-nfx83FdAyip6tfZbfVy75KdZx3q0ZDg",
         authDomain: "manegang-9b41f.firebaseapp.com",
@@ -140,11 +137,9 @@
         measurementId: "G-N0SFDRC668"
       };
 
-      // Initialize Firebase
       const app = initializeApp(firebaseConfig);
       const auth = getAuth(app);
 
-      // Handle login form submission
       document.getElementById('login-form').addEventListener('submit', async (e) => {
         e.preventDefault();
         const email = document.getElementById('email').value;
@@ -153,7 +148,7 @@
         try {
           await signInWithEmailAndPassword(auth, email, password);
           alert('Login successful');
-          window.location.href = 'submission.html'; // Redirect to the submission
+          window.location.href = 'submission.html';
         } catch (error) {
           alert('Error logging in: ' + error.message);
         }

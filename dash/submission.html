@@ -238,11 +238,10 @@
             <a href="ha.html">loxxy poooo something doesnt workkkk help meee</a>
         </footer>
     </div>
-
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
         import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js";
-        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js";
+        import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js";
         import { getStorage, ref, uploadBytes } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-storage.js";
 
         const firebaseConfig = {
@@ -260,14 +259,15 @@
         const db = getFirestore(app);
         const storage = getStorage(app);
 
-        // check auth
+        // check if the user is actually logged in
+        // even if you take this out you still cant submit so hahaha eat shit
         onAuthStateChanged(auth, (user) => {
             if (!user) {
-                window.location.href = 'login.html'; // redirect
+                window.location.href = 'login.html'; // say "hahaha fuck you" if the user isnt authenticated
             }
         });
 
-        // Handle form submission
+        // handling form submission
         const form = document.getElementById('submission-form');
         const fileInput = document.getElementById('song-file');
         const fileLabel = document.querySelector('.custom-file-label');
@@ -288,27 +288,31 @@
             const file = fileInput.files[0];
             const album = document.getElementById('album').value;
             const soundcloudLink = document.getElementById('soundcloud-link').value;
+            const user = auth.currentUser;
 
-            if (file) {
+            if (file && user) {
                 try {
+                    // upload
                     const storageRef = ref(storage, `songs/${file.name}`);
                     await uploadBytes(storageRef, file);
 
-                    await addDoc(collection(db, 'submissions'), {
+                    // firestore
+                    await setDoc(doc(db, 'submissions', songTitle), {
                         songTitle,
                         album,
                         soundcloudLink,
                         fileName: file.name,
-                        uid: auth.currentUser.uid,
+                        email: user.email, // idk if ts works
+                        uid: user.uid,
                         timestamp: new Date(),
                     });
 
-                    alert('Song submitted successfully!');
+                    alert('song submitted (if you submitted some random bs it will be deleted hahaah)');
                     form.reset();
-                    fileNameSpan.textContent = 'No file chosen';
+                    fileNameSpan.textContent = 'no file chosen';
                 } catch (error) {
-                    console.error('Error submitting the song:', error);
-                    alert('Failed to submit the song.');
+                    console.error('error submitting the song:', error);
+                    alert('failed to submit the song. (try logging in again)');
                 }
             }
         });
