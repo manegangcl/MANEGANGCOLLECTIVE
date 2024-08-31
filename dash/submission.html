@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>manegang collective - submissions</title>
+    <script defer src="../navigation.js"></script>
+    <link rel="icon" href="../assets/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="../cstyle.css">
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>
+    <style>
+        header {
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        .logo {
+            max-width: 50%;
+            height: auto;
+            margin-top: -80px;
+            margin-bottom: -140px;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            margin: 15px 0;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-transform: lowercase;
+            font-size: 14px;
+            letter-spacing: 1px;
+            margin: 0 15px;
+            transition: color 0.3s;
+            text-decoration: none;
+            filter: antialiased;
+        }
+
+        .nav-links a:hover {
+            color: #cccccc;
+            filter: blur(1px);
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            gap: 20px;
+        }
+
+        .buttons button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #ffffff;
+            background-color: #444;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .buttons button:hover {
+            background-color: #666;
+        }
+
+        h2 {
+            margin-top: -9px;
+            margin-bottom: 15px;
+            font-size: 24px;
+            text-align: center; /* Center the heading text */
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            font-size: 12px;
+            color: #e0e0e0;
+        }
+
+        footer a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: #e4e4e4;
+        }
+
+        .form-container {
+            width: 100%;
+            max-width: 600px;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            width: 100%;
+            max-width: 400px; /* Adjust this max-width as needed */
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center the form group contents */
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #ffffff;
+            text-transform: lowercase;
+            text-align: center; /* Center the label text */
+        }
+
+        .form-group input, .form-group select {
+            width: 80%; /* Adjust this percentage as needed */
+            max-width: 400px; /* Set a maximum width to prevent the fields from becoming too large */
+            padding: 10px;
+            border: 1px solid #444;
+            border-radius: 5px;
+            background: #222;
+            color: #ffffff;
+            margin: 0 auto; /* Center the fields horizontally */
+            display: block; /* Ensure the fields are displayed as block elements */
+        }
+
+        .form-group input[type="file"] {
+            padding: 0;
+        }
+
+        .form-group button {
+            padding: 10px;
+            background-color: #555;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%; /* Make the button take up full width of its container */
+            max-width: 200px; /* Set a max width to prevent the button from becoming too large */
+        }
+
+        .form-group button:hover {
+            background-color: #777;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <img alt="manegang collective logo" class="logo" src="../assets/logo.png">
+        </header>
+
+        <div class="nav-links">
+            <a data-target="../index.html" href="../index.html">home</a>
+            <a data-target="../releases.html" href="../releases.html">releases</a>
+            <a data-target="../contacts.html" href="../contacts.html">contacts</a>
+        </div>
+
+        <div class="content">
+            <h2>submit your song</h2>
+            <div class="form-container">
+                <form id="submission-form">
+                    <div class="form-group">
+                        <label for="song-title">song title</label>
+                        <input type="text" id="song-title" name="song-title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="song-file">upload song</label>
+                        <input type="file" id="song-file" name="song-file" accept="audio/*" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="album">select album</label>
+                        <select id="album" name="album" required>
+                            <option value="">select an album</option>
+                            <!-- Example albums, replace with your actual album options -->
+                            <option value="album1">oper volume</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit">submit song</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <footer>
+            <a href="ha.html">loxxy poooo something doesnt workkkk help meee</a>
+        </footer>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js";
+        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js";
+        import { getStorage, ref, uploadBytes } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-storage.js";
+    
+        const firebaseConfig = {
+            apiKey: "AIzaSyB-nfx83FdAyip6tfZbfVy75KdZx3q0ZDg",
+            authDomain: "manegang-9b41f.firebaseapp.com",
+            projectId: "manegang-9b41f",
+            storageBucket: "manegang-9b41f.appspot.com",
+            messagingSenderId: "880790060479",
+            appId: "1:880790060479:web:3f36971442c54552e1f50a",
+            measurementId: "G-N0SFDRC668"
+        };
+    
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        const storage = getStorage(app);
+    
+        // Check if user is authenticated
+        onAuthStateChanged(auth, (user) => {
+            if (!user) {
+                window.location.href = 'login.html'; // Redirect to login if not authenticated
+            }
+        });
+    
+        // Handle form submission
+        const form = document.getElementById('submission-form');
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const title = document.getElementById('song-title').value;
+            const file = document.getElementById('song-file').files[0];
+            const album = document.getElementById('album').value;
+    
+            if (title && file && album) {
+                try {
+                    // Create formatted file name without converting to lowercase
+                    const fileExtension = file.name.split('.').pop(); // Extract file extension
+                    const formattedFileName = `${title}_${album}.${fileExtension}`;
+                    
+                    // Create a reference to the Firebase Storage path
+                    const storageRef = ref(storage, `songs/${formattedFileName}`);
+                    
+                    // Upload the file
+                    await uploadBytes(storageRef, file);
+                    
+                    // Add document to Firestore
+                    await addDoc(collection(db, 'submissions'), {
+                        title,
+                        album,
+                        fileName: formattedFileName,
+                        submittedAt: new Date()
+                    });
+    
+                    alert('song submitted successfully!');
+                } catch (error) {
+                    console.error('error submitting song:', error);
+                    alert('failed to submit song.');
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>manegang collective - auth</title>
+    <script defer src="../navigation.js"></script>
+    <link rel="icon" href="../assets/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="../cstyle.css">
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>
+    <style>
+        /* Add your existing styles here or modify as needed */
+        header {
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        .logo {
+            max-width: 50%;
+            height: auto;
+            margin-top: -80px;
+            margin-bottom: -140px;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            margin: 15px 0;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-transform: lowercase;
+            font-size: 14px;
+            letter-spacing: 1px;
+            margin: 0 15px;
+            transition: color 0.3s;
+            text-decoration: none;
+            filter: antialiased;
+        }
+
+        .nav-links a:hover {
+            color: #cccccc;
+            filter: blur(1px);
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .login-form input {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .login-form button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #ffffff;
+            background-color: #444;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .login-form button:hover {
+            background-color: #666;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            font-size: 12px;
+            color: #e0e0e0;
+        }
+
+        footer a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: #e4e4e4;
+        }
+    </style>
+    <meta property="og:title" content="manegang collective">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <img alt="manegang collective logo" class="logo" src="../assets/logo.png">
+        </header>
+
+        <div class="content">
+            <h2>login</h2>
+            <form id="login-form" class="login-form">
+                <input type="email" id="email" placeholder="email" required>
+                <input type="password" id="password" placeholder="password" required>
+                <button type="submit">login</button>
+            </form>
+        </div>
+
+        <footer>
+            <a href="ha.html">loxxy poooo something doesnt workkkk help meee</a>
+        </footer>
+    </div>
+    <script type="module">
+      // Import the functions you need from Firebase SDKs
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
+      import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js";
+
+      // Your Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyB-nfx83FdAyip6tfZbfVy75KdZx3q0ZDg",
+        authDomain: "manegang-9b41f.firebaseapp.com",
+        projectId: "manegang-9b41f",
+        storageBucket: "manegang-9b41f.appspot.com",
+        messagingSenderId: "880790060479",
+        appId: "1:880790060479:web:3f36971442c54552e1f50a",
+        measurementId: "G-N0SFDRC668"
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+
+      // Handle login form submission
+      document.getElementById('login-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+
+        try {
+          await signInWithEmailAndPassword(auth, email, password);
+          alert('Login successful');
+          window.location.href = 'submission.html'; // Redirect to the submission
+        } catch (error) {
+          alert('Error logging in: ' + error.message);
+        }
+      });
+    </script>
+</body>
+
+</html>
