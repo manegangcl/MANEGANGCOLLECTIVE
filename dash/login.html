@@ -158,7 +158,7 @@
 
         try {
           await signInWithEmailAndPassword(auth, email, password);
-          alert('Login successful');
+          alert('successfully logged in, you will be redirected to the submission page.');
           window.location.href = 'submission.html';
         } catch (error) {
           alert('Error logging in: ' + error.message);
