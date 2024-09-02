@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="../cstyle.css">
     <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-storage.js"></script>
     <style>
         header {
             text-align: center;
@@ -188,6 +190,32 @@
             font-size: 12px;
             color: #e0e0e0;
         }
+
+        .upload-progress {
+            display: none;
+            width: 80%;
+            max-width: 400px;
+            margin: 15px auto;
+            text-align: center;
+            color: #ffffff;
+        }
+
+        .progress-container {
+            width: 100%;
+            max-width: 400px;
+            background: #222;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .progress-bar {
+            width: 0%;
+            height: 20px;
+            background-color: #555;
+            border-radius: 5px;
+            transition: width 0.4s ease;
+        }
     </style>
 </head>
 
@@ -235,17 +263,23 @@
                         <button type="submit">submit song</button>
                     </div>
                 </form>
+                <div class="upload-progress">
+                    <p>upload progress: <span id="progress-text">0%</span></p>
+                    <div class="progress-container">
+                        <div class="progress-bar" id="progress-bar"></div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <footer>
-        </footer>
+        <footer></footer>
     </div>
+
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
         import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js";
         import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js";
-        import { getStorage, ref, uploadBytes } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-storage.js";
+        import { getStorage, ref, uploadBytesResumable } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-storage.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyB-nfx83FdAyip6tfZbfVy75KdZx3q0ZDg",
@@ -262,25 +296,26 @@
         const db = getFirestore(app);
         const storage = getStorage(app);
 
-        // check if the user is actually logged in
         onAuthStateChanged(auth, (user) => {
             if (!user) {
-                window.location.href = 'login.html'; // redirect if the user isn't authenticated
+                window.location.href = 'login.html';
             }
         });
 
-        // handling form submission
         const form = document.getElementById('submission-form');
         const fileInput = document.getElementById('song-file');
         const fileLabel = document.querySelector('.custom-file-label');
         const fileNameSpan = document.querySelector('.file-name');
+        const progressBar = document.getElementById('progress-bar');
+        const progressText = document.getElementById('progress-text');
+        const uploadProgress = document.querySelector('.upload-progress');
 
         fileLabel.addEventListener('click', () => {
             fileInput.click();
         });
 
         fileInput.addEventListener('change', (event) => {
-            const fileName = event.target.files[0] ? event.target.files[0].name : 'No file chosen';
+            const fileName = event.target.files[0] ? event.target.files[0].name : 'no file chosen';
             fileNameSpan.textContent = fileName;
         });
 
@@ -295,29 +330,42 @@
 
             if (file && user) {
                 try {
-                    // Append artist name to the file name
+                    uploadProgress.style.display = 'block';
                     const modifiedFileName = `${songTitle}_${artistName}.mp3`;
                     const storageRef = ref(storage, `songs/${modifiedFileName}`);
-                    await uploadBytes(storageRef, file);
+                    const uploadTask = uploadBytesResumable(storageRef, file);
 
-                    // Save submission data to Firestore
-                    await setDoc(doc(db, 'submissions', songTitle), {
-                        songTitle,
-                        artistName, // add artist name to Firestore
-                        album,
-                        soundcloudLink,
-                        fileName: modifiedFileName, // save the modified file name
-                        email: user.email,
-                        uid: user.uid,
-                        timestamp: new Date(),
+                    uploadTask.on('state_changed', (snapshot) => {
+                        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                        progressBar.style.width = `${progress}%`;
+                        progressText.textContent = `${Math.floor(progress)}%`;
+
+                    }, (error) => {
+                        console.error('error during upload:', error);
+                        alert('failed to upload the song please try again');
+                        uploadProgress.style.display = 'none';
+                    }, async () => {
+                        await setDoc(doc(db, 'submissions', songTitle), {
+                            songTitle,
+                            artistName,
+                            album,
+                            soundcloudLink,
+                            fileName: modifiedFileName,
+                            email: user.email,
+                            uid: user.uid,
+                            timestamp: new Date(),
+                        });
+
+                        alert('song submitted successfully');
+                        form.reset();
+                        fileNameSpan.textContent = 'no file chosen';
+                        uploadProgress.style.display = 'none';
+                        progressBar.style.width = '0%';
+                        progressText.textContent = '0%';
                     });
-
-                    alert('song submitted successfully');
-                    form.reset();
-                    fileNameSpan.textContent = 'no file chosen';
                 } catch (error) {
                     console.error('error submitting the song:', error);
-                    alert('failed to submit the song. please try again.');
+                    alert('failed to submit the song please try again');
                 }
             }
         });
