@@ -240,7 +240,7 @@
                         <input type="text" id="song-title" name="song-title" required>
                     </div>
                     <div class="form-group">
-                        <label for="artist-name">artist name(s)</label>
+                        <label for="artist-name">artist(s)</label>
                         <input type="text" id="artist-name" name="artist-name" required>
                     </div>
                     <div class="form-group">
@@ -252,7 +252,7 @@
                         <label for="album">select album</label>
                         <select id="album" name="album" required>
                             <option value="">select an album</option>
-                            <option value="album1">oper volume</option>
+                            <option value="VOL8">oper volume</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -347,8 +347,8 @@
                     }, async () => {
                         await setDoc(doc(db, 'submissions', songTitle), {
                             songTitle,
-                            artistName,
                             album,
+                            artistName,
                             soundcloudLink,
                             fileName: modifiedFileName,
                             email: user.email,
