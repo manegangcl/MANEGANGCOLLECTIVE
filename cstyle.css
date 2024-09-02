@@ -1,7 +1,7 @@
 @font-face {
     font-family: 'manegangfont';
     src: url('assets/font1.otf') format('opentype');
-    font-display: swap; /* Ensures text is visible while the font loads */
+    font-display: swap;
 }
 
 body, html {
@@ -14,18 +14,20 @@ body, html {
     background-size: cover;
     background-attachment: fixed; 
     color: #cccccc;
-    height: 100vh; /* Set body to full height of the viewport */
-    overflow: hidden; /* Hide scrollbars on the body */
+    height: 100vh;
+    overflow: hidden;
     display: flex;
-    flex-direction: column; /* Column direction */
-    justify-content: center; /* Center vertically */
-    align-items: center; /* Center horizontally */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     scrollbar-width: none; 
     user-select: none;
 }
+
 body::-webkit-scrollbar {
-    display: none; /* chrome safari edge */
+    display: none;
 }
+
 .container {
     max-width: 1200px; 
     width: 90%; 
@@ -42,12 +44,12 @@ body::-webkit-scrollbar {
     transition: transform 0.1s ease-out;
     will-change: transform;
     position: relative;
-    height: 80vh; /* Fixed height for the container */
-    overflow-y: auto;  /* Allows vertical scrolling */
-    margin-top: 1.8vh; /* Remove margin-top */
-    margin-bottom: 20px; /* Added px to specify unit */
-
+    height: 80vh;
+    overflow-y: auto;
+    margin-top: 1.8vh;
+    margin-bottom: 20px;
 }
+
 .container::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, and Edge */
+    display: none;
 }
