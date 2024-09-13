@@ -244,7 +244,7 @@
                         <input type="text" id="artist-name" name="artist-name" required>
                     </div>
                     <div class="form-group">
-                        <label for="song-file" class="custom-file-label">choose file</label>
+                        <label for="song-file" class="custom-file-label" for="song-file">choose file</label>
                         <input type="file" id="song-file" name="song-file" accept="audio/*" class="custom-file-input" required>
                         <span class="file-name">no file chosen</span>
                     </div>
@@ -286,9 +286,8 @@
             authDomain: "manegang-9b41f.firebaseapp.com",
             projectId: "manegang-9b41f",
             storageBucket: "manegang-9b41f.appspot.com",
-            messagingSenderId: "880790060479",
-            appId: "1:880790060479:web:3f36971442c54552e1f50a",
-            measurementId: "G-N0SFDRC668"
+            messagingSenderId: "673830555880",
+            appId: "1:673830555880:web:e0719d16ba2cbd1c29983e"
         };
 
         const app = initializeApp(firebaseConfig);
@@ -296,77 +295,65 @@
         const db = getFirestore(app);
         const storage = getStorage(app);
 
+        const fileInput = document.getElementById("song-file");
+        const fileLabel = document.querySelector(".custom-file-label");
+        const fileNameDisplay = document.querySelector(".file-name");
+        const progressBar = document.getElementById("progress-bar");
+        const progressText = document.getElementById("progress-text");
+        const uploadProgress = document.querySelector(".upload-progress");
+
+        fileInput.addEventListener("change", () => {
+            const fileName = fileInput.files[0] ? fileInput.files[0].name : "no file chosen";
+            fileNameDisplay.textContent = fileName;
+        });
+
+        document.getElementById("submission-form").addEventListener("submit", (event) => {
+            event.preventDefault();
+
+            const file = fileInput.files[0];
+            const songTitle = document.getElementById("song-title").value;
+            const artistName = document.getElementById("artist-name").value;
+            const album = document.getElementById("album").value;
+            const soundcloudLink = document.getElementById("soundcloud-link").value;
+
+            if (!file || !songTitle || !artistName || !album) {
+                alert("Please fill out all required fields.");
+                return;
+            }
+
+            const storageRef = ref(storage, songTitle);
+            const uploadTask = uploadBytesResumable(storageRef, file);
+
+            uploadProgress.style.display = "block";
+
+            uploadTask.on(
+                "state_changed",
+                (snapshot) => {
+                    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                    progressBar.style.width = progress + "%";
+                    progressText.textContent = progress.toFixed(2) + "%";
+                },
+                (error) => {
+                    console.error("Upload failed:", error);
+                },
+                async () => {
+                    const docRef = doc(db, "submissions", songTitle);
+                    await setDoc(docRef, {
+                        title: songTitle,
+                        artist: artistName,
+                        album: album,
+                        soundcloudLink: soundcloudLink || null,
+                        email: auth.currentUser.email,
+                        timestamp: new Date(),
+                    });
+                    alert("Song submitted successfully!");
+                }
+            );
+        });
+
         onAuthStateChanged(auth, (user) => {
             if (!user) {
-                window.location.href = 'login.html';
-            }
-        });
-
-        const form = document.getElementById('submission-form');
-        const fileInput = document.getElementById('song-file');
-        const fileLabel = document.querySelector('.custom-file-label');
-        const fileNameSpan = document.querySelector('.file-name');
-        const progressBar = document.getElementById('progress-bar');
-        const progressText = document.getElementById('progress-text');
-        const uploadProgress = document.querySelector('.upload-progress');
-
-        fileLabel.addEventListener('click', () => {
-            fileInput.click();
-        });
-
-        fileInput.addEventListener('change', (event) => {
-            const fileName = event.target.files[0] ? event.target.files[0].name : 'no file chosen';
-            fileNameSpan.textContent = fileName;
-        });
-
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const songTitle = document.getElementById('song-title').value;
-            const artistName = document.getElementById('artist-name').value;
-            const file = fileInput.files[0];
-            const album = document.getElementById('album').value;
-            const soundcloudLink = document.getElementById('soundcloud-link').value;
-            const user = auth.currentUser;
-
-            if (file && user) {
-                try {
-                    uploadProgress.style.display = 'block';
-                    const modifiedFileName = `${songTitle}_${artistName}.mp3`;
-                    const storageRef = ref(storage, `songs/${modifiedFileName}`);
-                    const uploadTask = uploadBytesResumable(storageRef, file);
-
-                    uploadTask.on('state_changed', (snapshot) => {
-                        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                        progressBar.style.width = `${progress}%`;
-                        progressText.textContent = `${Math.floor(progress)}%`;
-
-                    }, (error) => {
-                        console.error('error during upload:', error);
-                        alert('failed to upload the song please try again');
-                        uploadProgress.style.display = 'none';
-                    }, async () => {
-                        await setDoc(doc(db, 'submissions', songTitle), {
-                            songTitle,
-                            album,
-                            artistName,
-                            soundcloudLink,
-                            fileName: modifiedFileName,
-                            email: user.email,
-                            uid: user.uid,
-                            timestamp: new Date(),
-                        });
-
-                        alert('song submitted successfully');
-                        form.reset();
-                        fileNameSpan.textContent = 'no file chosen';
-                        uploadProgress.style.display = 'none';
-                        progressBar.style.width = '0%';
-                        progressText.textContent = '0%';
-                    });
-                } catch (error) {
-                    console.error('error submitting the song:', error);
-                    alert('failed to submit the song please try again');
-                }
+                window.location.href = "../index.html";
             }
         });
     </script>
