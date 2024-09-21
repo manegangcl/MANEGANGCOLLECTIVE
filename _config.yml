@@ -1,0 +1,24 @@
+# _config.yml
+
+title: manegang collective
+baseurl: ""
+url: "https://manegang.xyz"
+
+markdown: kramdown
+theme: jekyll-theme-cayman
+
+include:
+  - _pages
+  - assets
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+
+plugins:
+  - jekyll-sitemap
+  - jekyll-feed
+
+github:
+  is_project_page: false
