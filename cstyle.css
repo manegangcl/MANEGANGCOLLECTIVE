@@ -22,6 +22,7 @@ body, html {
     align-items: center;
     scrollbar-width: none; 
     user-select: none;
+    font-size: 16px; /* Default scaling using pixels */
 }
 
 body::-webkit-scrollbar {
@@ -29,7 +30,7 @@ body::-webkit-scrollbar {
 }
 
 .container {
-    max-width: 1200px; 
+    max-width: 1200px;  /* Fixed container size at large screens */
     width: 90%; 
     padding: 20px;
     background: rgba(0, 0, 0, 0.22);
@@ -52,4 +53,36 @@ body::-webkit-scrollbar {
 
 .container::-webkit-scrollbar {
     display: none;
+}
+
+/* Media Queries for responsive behavior */
+@media (max-width: 1024px) {
+    .container {
+        max-width: 90vw; /* Slightly reduce container width */
+        height: 75vh; /* Adjust height slightly */
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        max-width: 95vw; /* Container adapts to screen size */
+        height: 70vh; 
+        padding: 3vh;
+    }
+
+    body, html {
+        font-size: 14px; /* Keep smaller font size */
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        max-width: 90vw; 
+        height: 60vh;
+        padding: 4vh;
+    }
+
+    body, html {
+        font-size: 12px; /* Smaller font size for small screens */
+    }
 }

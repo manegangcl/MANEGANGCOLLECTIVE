@@ -1,11 +1,10 @@
 let posX = 0;
 let posY = 0;
-const smoothFactor = 0.1; // adjust this
+const smoothFactor = 0.1;
 let targetX = 0;
 let targetY = 0;
 const container = document.querySelector('.container');
 
-// uptade the uhh thingy
 document.addEventListener('mousemove', (e) => {
     const x = e.clientX / window.innerWidth;
     const y = e.clientY / window.innerHeight;
@@ -22,20 +21,15 @@ document.addEventListener('mousemove', (e) => {
 });
 
 function updatePosition() {
-    // smooth interpolate
     posX = posX + (targetX - posX) * smoothFactor;
     posY = posY + (targetY - posY) * smoothFactor;
 
-    // apply transform
     container.style.transform = `translate3d(${Math.round(posX)}px, ${Math.round(posY)}px, 0)`;
 
-    // keep updating
     requestAnimationFrame(updatePosition);
 }
 
-// start loop
 function initializeAnimation() {
-    // make sure initials are uhh good
     posX = targetX;
     posY = targetY;
 
