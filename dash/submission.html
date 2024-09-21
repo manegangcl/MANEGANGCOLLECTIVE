@@ -321,7 +321,7 @@
                 return;
             }
 
-            const storageRef = ref(storage, songTitle);
+            const storageRef = ref(storage, `songs/${songTitle}`);
             const uploadTask = uploadBytesResumable(storageRef, file);
 
             uploadProgress.style.display = "block";
