@@ -317,11 +317,10 @@
             const soundcloudLink = document.getElementById("soundcloud-link").value;
 
             if (!file || !songTitle || !artistName || !album) {
-                alert("Please fill out all required fields.");
+                alert("please fill out all required fields");
                 return;
             }
 
-            // Format the filename as "Songname_Artists.filextension"
             const fileExtension = file.name.split('.').pop();
             const formattedFileName = `${songTitle}_${artistName}.${fileExtension}`;
             const storageRef = ref(storage, `songs/${formattedFileName}`);
@@ -337,10 +336,10 @@
                     progressText.textContent = progress.toFixed(2) + "%";
                 },
                 (error) => {
-                    console.error("Upload failed:", error);
+                    console.error("upload failed:", error);
                 },
                 async () => {
-                    const uid = auth.currentUser.uid; // Get the current user's UID
+                    const uid = auth.currentUser.uid;
                     const docRef = doc(db, "submissions", songTitle);
                     await setDoc(docRef, {
                         album: album,
@@ -350,9 +349,9 @@
                         songTitle: songTitle,
                         soundcloudLink: soundcloudLink || null,
                         timestamp: new Date(),
-                        uid: uid, // Add the UID to Firestore
+                        uid: uid,
                     });
-                    alert("Song submitted successfully!");
+                    alert("song submitted");
                 }
             );
         });
