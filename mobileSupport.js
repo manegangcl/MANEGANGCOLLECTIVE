@@ -4,6 +4,8 @@ const smoothFactor = 0.1;
 let targetX = 0;
 let targetY = 0;
 const container = document.querySelector('.container');
+const submissionButton = document.getElementById('submission-button');
+const loginButton = document.getElementById('login-button');
 
 document.addEventListener('mousemove', (e) => {
     const x = e.clientX / window.innerWidth;
@@ -37,5 +39,22 @@ function initializeAnimation() {
 }
 
 window.addEventListener('load', initializeAnimation);
+
+firebase.auth().onAuthStateChanged(user => {
+    const submissionButton = document.getElementById('submission-button');
+    const loginButton = document.getElementById('login-button');
+
+    if (user) {
+        loginButton.style.display = 'none';
+        submissionButton.style.display = 'inline-block';
+        submissionButton.textContent = 'submit';
+        submissionButton.onclick = () => {
+            window.location.href = 'dash/submission.html';
+        };
+    } else {
+        submissionButton.style.display = 'none';
+        loginButton.style.display = 'inline-block';
+    }
+});
 
 // im l0xd8 and i made this sick javascript function

@@ -108,8 +108,7 @@
             margin-top: 20px;
         }
 
-        .discord-button,
-        .gform-button {
+        .discord-button, .gform-button {
             display: inline-block;
             padding: 10px 20px;
             background-color: #5865F2;
@@ -260,6 +259,7 @@
                 font-size: 14px;
             }
         }
+
     </style>
     <meta content="manegang collective - home" property="og:title" />
     <meta content="https://manegangcl.github.io/manegangcollective/assets/nod.metaimage.png" property="og:image" />
@@ -273,19 +273,67 @@
         <div class="nav-links">
             <a data-target="index.html" href="index.html">home</a>
             <a data-target="releases.html" href="releases.html">releases</a>
-            <a id="login-link" data-target="dash/login.html" href="dash/login.html">login</a>
+            <a id="login-button" data-target="dash/login.html" href="dash/login.html" style="display: inline-block;">login</a>
+            <a id="submission-button" data-target="dash/submission.html" href="dash/submission.html" style="display: none;">submit</a>
             <a data-target="contacts.html" href="contacts.html">contact</a>
         </div>
         <div class="content">
             <h2>volumes</h2>
             <div class="album-grid">
-                <!-- Album links -->
+                <a href="https://soundcloud.com/manegang-collective/sets/manegang-vol-1">
+                    <div class="album-cover">
+                        <img alt="volume 1" src="assets/volume1.jpg" />
+                        <div class="album-title">volume 1</div>
+                    </div>
+                </a>
+                <a href="https://soundcloud.com/manegang-collective/sets/manegang-collective-volume2">
+                    <div class="album-cover">
+                        <img alt="volume 2" src="assets/volume2.jpg" />
+                        <div class="album-title">volume 2</div>
+                    </div>
+                </a>
+                <a href="https://soundcloud.com/manegang-collective/sets/volume3">
+                    <div class="album-cover">
+                        <img alt="volume 3" src="assets/volume3.jpg" />
+                        <div class="album-title">volume 3</div>
+                    </div>
+                </a>
+                <a href="https://soundcloud.com/soundboostxspport/sets/volume-four">
+                    <div class="album-cover">
+                        <img alt="volume 4" src="assets/volume4.jpg" />
+                        <div class="album-title">volume 4</div>
+                    </div>
+                </a>
+                <a href="https://soundcloud.com/soundboostxspport/sets/volume-five">
+                    <div class="album-cover">
+                        <img alt="volume 5" src="assets/volume5.jpg" />
+                        <div class="album-title">volume 5</div>
+                    </div>
+                </a>
+                <a href="https://soundcloud.com/mgc-3-3/sets/volume-six">
+                    <div class="album-cover">
+                        <img alt="volume 6" src="assets/volume6.jpg" />
+                        <div class="album-title">volume 6</div>
+                    </div>
+                </a>
+                <a href="lnk/vol7msg/index.html">
+                    <div class="album-cover">
+                        <img alt="volume 7" src="assets/volume7.jpg" />
+                        <div class="album-title">volume 7</div>
+                    </div>
+                </a>
+                <a href="link-to-volume-8">
+                    <div class="album-cover" style="background-color: black;">
+                        <img alt="volume 8" src="assets/volume8.png" style="cursor: not-allowed; filter: blur(5px); -moz-filter: blur(5px); -webkit-filter: blur(5px); filter: invert(100%); -webkit-filter: invert(100%); -moz-filter: invert(100%);" />
+                        <div class="album-title"></div>
+                    </div>
+                </a>
             </div>
             <br />
             <br />
             <div class="button-container">
-                <a class="discord-button" href="https://discord.gg/p8ujaWQTFy" target="_blank">join our discord server</a>
-                <a class="gform-button" href="gform.html">apply to join</a>
+            <a class="discord-button" href="https://discord.gg/p8ujaWQTFy" target="_blank">join our discord server</a>
+            <a class="gform-button" href="gform.html">apply to join</a>
             </div>
         </div>
     </div>
@@ -294,31 +342,9 @@
     </footer>
     <button class="hidden-button" onclick="location.href='adminlogin.html'"></button>
     <script defer="" src="mobileSupport.js"></script>
-    <script defer="" src="https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js"></script>
-    <script defer="" src="https://www.gstatic.com/firebasejs/9.1.3/firebase-auth.js"></script>
-    <script>
-        const firebaseConfig = {
-            apiKey: "AIzaSyB-nfx83FdAyip6tfZbfVy75KdZx3q0ZDg",
-            authDomain: "manegang.firebaseapp.com",
-            projectId: "manegang",
-            storageBucket: "manegang.appspot.com",
-            messagingSenderId: "302238625620",
-            appId: "1:302238625620:web:9d8b3b5e7f8903748b8d67",
-            measurementId: "G-MEASUREMENT_ID"
-        };
-        // Initialize Firebase
-        const app = firebase.initializeApp(firebaseConfig);
-        const auth = firebase.auth();
-
-        // Check login status
-        auth.onAuthStateChanged((user) => {
-            const loginLink = document.getElementById('login-link');
-            if (user) {
-                loginLink.innerHTML = 'submit';
-                loginLink.href = 'dash/submission.html';
-            }
-        });
-    </script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>
+    <script src="navigation.js" defer></script>    
 </body>
 
 </html>
