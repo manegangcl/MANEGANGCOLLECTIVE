@@ -3,10 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>textpage</title>
+    <title>title</title>
     <style>
+        @font-face {
+            font-family: 'manegangfont';
+            src: url('../assets/font1.otf') format('opentype');
+            font-display: swap;
+        }
+
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'manegangfont', Arial, sans-serif;
             background-color: #222;
             color: #f3f3f3;
             display: flex;
@@ -17,6 +23,7 @@
             text-align: center;
             flex-direction: column;
         }
+
         h1 {
             font-size: 2.5em;
             margin-bottom: 20px;
