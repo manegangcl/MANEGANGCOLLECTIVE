@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
         message.style.padding = '20px';
         message.style.borderRadius = '8px';
         message.style.zIndex = '9999';
-        message.innerText = 'mobileusermessageplaceholder';
+        message.innerText = 'mobile layout in development!!!';
         document.body.appendChild(message);
     }
 
