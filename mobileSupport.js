@@ -56,5 +56,4 @@ firebase.auth().onAuthStateChanged(user => {
         loginButton.style.display = 'inline-block';
     }
 });
-
 // im l0xd8 and i made this sick javascript function
